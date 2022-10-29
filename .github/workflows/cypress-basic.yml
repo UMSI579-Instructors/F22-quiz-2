@@ -1,0 +1,21 @@
+name: E2E on Chrome
+on: [push]
+jobs:
+  cypress-run:
+    runs-on: ubuntu-20.04
+    name: Instructor Test Runner
+    steps:
+      - name: Check out code
+        uses: actions/checkout@v2
+      - name: Run E2E tests
+        uses: cypress-io/github-action@v4
+        with:
+          start: npm start
+          browser: chrome
+      - name: Run Component tests
+        uses: cypress-io/github-action@v4
+        with:
+          install: false
+          start: npm start
+          browser: chrome
+          component: true
